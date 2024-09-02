@@ -66,8 +66,8 @@ body {
   color: #fff;
   background-color: #1d1d1d;
   font-size: 14px;
-  font-family: 'Poppins', sans-serif;
-  font-family: 'Sora', sans-serif;
+  /* font-family: 'Poppins', sans-serif;
+  font-family: 'Sora', sans-serif; */
   font-weight: 400;
   overflow-x: hidden !important;
   padding: 0 40px;
@@ -408,6 +408,7 @@ a {
 
 a:hover {
   text-decoration: none;
+  background-color: var(--maincolor)!important;
 }
 
 figure {
@@ -1884,7 +1885,7 @@ body.loaded {
 
 .main-post .info-area .tags a:hover,
 .main-post .info-area .share-icon a:hover {
-  background: var(--maincolor);
+  background: var(--maincolor) !important;
   color: #1d1d1d;
 }
 
@@ -2059,7 +2060,7 @@ body.loaded {
 -----------------------------------------------------------------*/
 .resume .item {
   padding-bottom: 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
 }
 
 .resume .item .date p {

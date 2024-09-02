@@ -13,6 +13,9 @@
 			[ All Css Plugins & Helper Classes File ]
 -----------------------------------------------------------------*/
 
+/* == terminal css == */
+@import url("plugins/terminal.css");
+
 /* == bootstrap == */
 @import url("plugins/bootstrap.min.css");
 
