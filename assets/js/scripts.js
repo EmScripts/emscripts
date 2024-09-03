@@ -659,5 +659,32 @@ $(function () {
  /* =============================================================================
     -------------------------------  Rainbow loader svg   -------------------------------
     ============================================================================= */
-
+   $(function () {
+      const skillsHeading = document.getElementById('skills-heading');
+      const skillElements = document.querySelectorAll('.fade-in');
+    
+      // Function to start animations
+      const startAnimations = () => {
+        skillElements.forEach((element, index) => {
+          setTimeout(() => {
+            element.style.opacity = 1;
+            element.style.transform = 'translateY(0)';
+          }, index * 200); // delay each animation by 200ms for a staggered effect
+        });
+      };
+    
+      // Observe the heading
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            startAnimations(); // Start animations when heading comes into view
+            observer.unobserve(entry.target); // Stop observing the heading
+          }
+        });
+      });
+    
+      observer.observe(skillsHeading);
+    });
+    
+    
 
