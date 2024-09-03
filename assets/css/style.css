@@ -4592,9 +4592,32 @@ img.left {
 
 /* ====================== [ End Responsive ] ====================== */
 
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 1s ease-in, transform 1s ease-in;
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
 }
 
+@keyframes revealImage {
+  from { width: 0; }
+  to { width: 40px; }  /* Match this to your desired image width */
+}
+
+.skill-img {
+  width: 0;  /* Start with the image width at 0 */
+  overflow: hidden;
+  display: inline-block;
+}
+
+.skill-text, .skill-percentage {
+  width: 0;   /* Start with the text width at 0 */
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  border-right: 2px solid;  /* Optional: to simulate the cursor effect */
+  opacity: 0;
+  transition: border-right 0.5s ease-out; /* Smooth transition for border removal */
+}
+
+.skill-text.typing-complete, .skill-percentage.typing-complete {
+  border-right: none; /* Remove border after typing animation */
+}

@@ -656,35 +656,63 @@ $(function () {
     });
   }
 });
- /* =============================================================================
+/* =============================================================================
     -------------------------------  Rainbow loader svg   -------------------------------
     ============================================================================= */
-   $(function () {
-      const skillsHeading = document.getElementById('skills-heading');
-      const skillElements = document.querySelectorAll('.fade-in');
+    document.addEventListener("DOMContentLoaded", function() {
+      const skillTexts = document.querySelectorAll('.skill-text');
+      const skillPercentages = document.querySelectorAll('.skill-percentage');
+      const skillImages = document.querySelectorAll('.skill-img');
+      const skillsSection = document.getElementById('skills-heading');
     
-      // Function to start animations
-      const startAnimations = () => {
-        skillElements.forEach((element, index) => {
-          setTimeout(() => {
-            element.style.opacity = 1;
-            element.style.transform = 'translateY(0)';
-          }, index * 200); // delay each animation by 200ms for a staggered effect
-        });
-      };
+      if (skillsSection) {
+        let observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              let delay = 0;
     
-      // Observe the heading
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            startAnimations(); // Start animations when heading comes into view
-            observer.unobserve(entry.target); // Stop observing the heading
-          }
-        });
-      });
+              skillImages.forEach((image, index) => {
+                const textElement = skillTexts[index];
+                const percentageElement = skillPercentages[index];
     
-      observer.observe(skillsHeading);
+                // Reveal image first
+                setTimeout(() => {
+                  if (image) {
+                    image.style.width = "40px";  // Ensure the image is set to the correct width
+                    image.style.animation = `revealImage 0.5s forwards`;
+                  }
+                }, delay);
+    
+                // Reveal skill text after image
+                setTimeout(() => {
+                  if (textElement) {
+                    textElement.style.animation = `typing 0.5s steps(${textElement.textContent.length}, end) forwards`;
+                    textElement.style.opacity = 1;
+                    textElement.classList.add('typing-complete'); // Add class to remove border after animation
+                  }
+                }, delay + 500);
+    
+                // Reveal skill percentage after text
+                setTimeout(() => {
+                  if (percentageElement) {
+                    percentageElement.style.animation = `typing 0.5s steps(${percentageElement.textContent.length}, end) forwards`;
+                    percentageElement.style.opacity = 1;
+                    percentageElement.classList.add('typing-complete'); // Add class to remove border after animation
+                  }
+                }, delay + 1000);
+    
+                delay += 1500; // Adjust delay for each column
+              });
+    
+              // Disconnect observer after the animation has started
+              observer.disconnect();
+            }
+          });
+        }, { threshold: 0.5 });
+    
+        observer.observe(skillsSection);
+      } else {
+        console.error("Element with ID 'skills-heading' not found.");
+      }
     });
-    
-    
-
+     
