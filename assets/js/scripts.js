@@ -657,7 +657,7 @@ $(function () {
   }
 });
 /* =============================================================================
-    -------------------------------  Rainbow loader svg   -------------------------------
+    -------------------------------  Skills Typing Animation   -------------------------------
     ============================================================================= */
     document.addEventListener("DOMContentLoaded", function() {
       const skillTexts = document.querySelectorAll('.skill-text');
@@ -716,3 +716,15 @@ $(function () {
       }
     });
      
+/* =============================================================================
+    -------------------------------  Accordion/Collapse  -------------------------------
+    ============================================================================= */
+    $(document).ready(function() {
+      $('.toggle-details').on('click', function(e) {
+        e.preventDefault();
+        var $detailsContent = $(this).closest('.item').find('.details-content');
+        $detailsContent.slideToggle(); // Toggle visibility with a slide effect
+        $(this).text($(this).text() === ' -> ' ? ' ↑ ' : ' -> '); // Toggle arrow direction
+      });
+    });
+    

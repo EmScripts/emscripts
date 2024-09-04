@@ -4621,3 +4621,11 @@ img.left {
 .skill-text.typing-complete, .skill-percentage.typing-complete {
   border-right: none; /* Remove border after typing animation */
 }
+
+.details-content {
+  display: none;
+  padding-top: 10px;
+}
+.arrow {
+  cursor: pointer;
+}
