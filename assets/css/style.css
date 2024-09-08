@@ -2066,6 +2066,7 @@ body.loaded {
   padding: 5px 15px;
   border-radius: 30px;
   border: 1px solid rgba(255, 255, 255, 0.5);
+  width: fit-content;
 }
 
 .resume .item .arrow svg {
@@ -4524,9 +4525,6 @@ img.left {
     margin-right: 0 !important;
     width: 35px;
   }
-  .resume .item .arrow {
-    display: none;
-  }
   .resume .item .date p {
     font-size: 12px !important;
   }
@@ -4588,6 +4586,9 @@ img.left {
   .comments-post .item-box.replayed {
     margin-left: 0;
   }
+  .section-padding {
+    padding: 60px 0;
+}
 }
 
 /* ====================== [ End Responsive ] ====================== */
