@@ -2369,9 +2369,9 @@ body.loaded {
   pointer-events: none;
 }
 
-.portfolio .item .img > a {
+/* .portfolio .item .img > a {
   height: 400px;
-}
+} */
 
 .portfolio .item .img img {
   width: 100%;
@@ -4736,3 +4736,26 @@ img.left {
   animation: slideInDown 0.6s ease-out;
 }
 
+@media (min-width: 768px) {
+  .object-fit-md-contain {
+      -o-object-fit: contain !important;
+      object-fit: contain !important;
+  }
+  .object-fit-md-cover {
+    -o-object-fit: cover !important;
+    object-fit: cover !important;
+}
+.portfolio .item .img > a {
+  height: 400px;
+}
+}
+
+.object-fit-cover{
+  -o-object-fit: cover !important;
+  object-fit: cover !important;
+}
+
+.object-fit-contain{
+  -o-object-fit: contain !important;
+  object-fit: contain !important;
+}
