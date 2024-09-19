@@ -907,7 +907,7 @@
             <div class="col-lg-4">
               <div class="item mt-50">
                 <div class="img">
-                  <a href="#">
+                  <a data-bs-target="#CarouselModal" data-bs-toggle="modal">
                     <img
                       src="assets/imgs/works/sns-phone-carousel.png"
                       alt=""
@@ -922,12 +922,12 @@
                     <span class="tag">CSS</span>
                     <span class="tag">JS</span>
                     <h6 class="line-height-1">
-                      <a href="#">Phone Carousel</a>
+                      <span>Phone Carousel</span>
                     </h6>
                   </div>
                   <div class="ml-auto">
                     <div class="arrow">
-                      <a href="#">
+                      <a data-bs-target="#CarouselModal" data-bs-toggle="modal">
                         <svg
                           class="arrow-right"
                           xmlns="http://www.w3.org/2000/svg"
@@ -1570,11 +1570,7 @@
             </div>
             <div class="col-lg-6 offset-lg-1 valign">
               <div class="full-width">
-                <form
-                  id="contact-form"
-                  method="post"
-                  action="https://ui-themez.smartinnovates.net/items/hawke/contact.php"
-                >
+                <form id="contact-form" method="post">
                   <div class="messages"></div>
 
                   <div class="controls row">
@@ -1640,7 +1636,7 @@
       <!-- ==================== End Contact ==================== -->
     </main>
     <!-- ==================== Start modals ==================== -->
-
+    <!-- do it modal -->
     <div
       class="modal fade"
       id="DoItModal"
@@ -1698,7 +1694,7 @@
                                   updates and seamless user interaction.
                                 </h6>
                               </li>
-                              
+
                               <li class="mt-20">
                                 <h6 class="inline fz-18">
                                   Accessibility: Responsive layout with the help
@@ -1708,8 +1704,10 @@
                             </ul>
                             <p class="mt-30">
                               This project reflects my dedication to clean
-                              design and functional development in a limited timeframe(3 days!). <br/>
-                              [PS:Click on the website link and complete all the tasks for a surprise!]
+                              design and functional development in a limited
+                              timeframe(3 days!). <br />
+                              [PS:Click on the website link and complete all the
+                              tasks for a surprise!]
                             </p>
                           </div>
                         </div>
@@ -1756,6 +1754,7 @@
         </div>
       </div>
     </div>
+    <!-- logo figma modal -->
     <div
       class="modal fade"
       id="LogoModal"
@@ -1874,7 +1873,127 @@
         </div>
       </div>
     </div>
+    <!-- sns carousel modal -->
+    <div
+      class="modal fade"
+      id="CarouselModal"
+      data-background="assets/imgs/patterns/noise1.png"
+    >
+      <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header border-0">
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
 
+          <!-- Modal body -->
+          <div class="modal-body">
+            <div class="project">
+              <div class="container">
+                <div class="row justify-content-center">
+                  <div class="col-lg-11">
+                    <div class="img mb-md-5 mb-3">
+                      <img
+                        src="assets/imgs/works/sns-phone-carousel.png"
+                        alt=""
+                        class="radius-5"
+                      />
+                    </div>
+                    <div class="row justify-content-center">
+                      <div class="col-lg-7 order-2 order-md-1">
+                        <div class="cont mb-md-5 mb-3">
+                          <h3 class="mb-15 fw-500">
+                            Social Media Phone Carousel
+                          </h3>
+                          <p>
+                            Ever seen those design mockups for Instagram
+                            carousels on Behance? Well, I searched for template
+                            codes for them but didn’t find any! So I decided to
+                            create my own—because why not?
+                          </p>
+                          <h6 class="mt-30">Project Highlights:</h6>
+                          <div class="mt-15">
+                            <ul class="rest list-arrow">
+                              <li>
+                                <h6 class="inline fz-18">
+                                  Custom Mockups: The 'Phone' was crafted
+                                  entirely in CSS, as for the instagram images,
+                                  I edited them on Figma.
+                                </h6>
+                              </li>
+                              <li class="mt-20">
+                                <h6 class="inline fz-18">
+                                  Interactive Carousel: A seamless, swipable
+                                  phone carousel that lets you flip through your
+                                  social media posts.
+                                </h6>
+                              </li>
+                              <li class="mt-20">
+                                <h6 class="inline fz-18">
+                                  Responsive Design: Whether you’re on desktop
+                                  or mobile, this mockup adjusts to look sharp
+                                  everywhere.
+                                </h6>
+                              </li>
+                            </ul>
+                            <p class="mt-30">
+                              Because when inspiration strikes, you just have to
+                              build it yourself! Now you can see social media
+                              posts in style, no code template search
+                              necessary. Curious? Click on the link to see it
+                              live!
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="col-lg-4 order-1 order-md-2 mt-2 mb-4 mb-md-0"
+                      >
+                        <div class="info" id="sticky_item">
+                          <span class="sub-title"
+                            ><i class="far fa-calendar-alt mr-5"></i> Date
+                            :</span
+                          >
+                          <span>August 2024</span>
+
+                          <span class="sub-title mt-2"
+                            ><i class="fas fa-code mr-5"></i> Tech Stack :</span
+                          >
+                          <span
+                            >HTML, CSS, JS(Splide Js), Bootstrap 5, Netlify</span
+                          >
+                          <span class="sub-title mt-2"
+                            ><i class="fab fa-github mr-5"></i> GITHUB :</span
+                          >
+                          <a
+                            href="https://github.com/EmScripts/sns-phone-carousel"
+                            target="_blank"
+                            >sns-phone-carousel
+                          </a>
+
+                          <span class="sub-title mt-2"
+                            ><i class="fas fa-globe mr-5"></i> Website :</span
+                          >
+                          <a
+                            href="https://sns-phone-carousel.netlify.app/"
+                            target="_blank"
+                            >SNS Phone Carousel</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- ==================== End modals ==================== -->
     <!-- ==================== Start Footer ==================== -->
 
@@ -1904,6 +2023,11 @@
     <script src="assets/js/plugins.js"></script>
 
     <script src="assets/js/ScrollTrigger.min.js"></script>
+    <!-- emailjs -->
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
 
     <!-- custom scripts -->
     <script src="assets/js/scripts.js"></script>

@@ -659,72 +659,116 @@ $(function () {
 /* =============================================================================
     -------------------------------  Skills Typing Animation   -------------------------------
     ============================================================================= */
-    document.addEventListener("DOMContentLoaded", function() {
-      const skillTexts = document.querySelectorAll('.skill-text');
-      const skillPercentages = document.querySelectorAll('.skill-percentage');
-      const skillImages = document.querySelectorAll('.skill-img');
-      const skillsSection = document.getElementById('skills-heading');
-    
-      if (skillsSection) {
-        let observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              let delay = 0;
-    
-              skillImages.forEach((image, index) => {
-                const textElement = skillTexts[index];
-                const percentageElement = skillPercentages[index];
-    
-                // Reveal image first
-                setTimeout(() => {
-                  if (image) {
-                    image.style.width = "40px";  // Ensure the image is set to the correct width
-                    image.style.animation = `revealImage 0.5s forwards`;
-                  }
-                }, delay);
-    
-                // Reveal skill text after image
-                setTimeout(() => {
-                  if (textElement) {
-                    textElement.style.animation = `typing 0.5s steps(${textElement.textContent.length}, end) forwards`;
-                    textElement.style.opacity = 1;
-                    textElement.classList.add('typing-complete'); // Add class to remove border after animation
-                  }
-                }, delay + 500);
-    
-                // Reveal skill percentage after text
-                setTimeout(() => {
-                  if (percentageElement) {
-                    percentageElement.style.animation = `typing 0.5s steps(${percentageElement.textContent.length}, end) forwards`;
-                    percentageElement.style.opacity = 1;
-                    percentageElement.classList.add('typing-complete'); // Add class to remove border after animation
-                  }
-                }, delay + 1000);
-    
-                delay += 1500; // Adjust delay for each column
-              });
-    
-              // Disconnect observer after the animation has started
-              observer.disconnect();
-            }
-          });
-        }, { threshold: 0.5 });
-    
-        observer.observe(skillsSection);
-      } else {
-        console.error("Element with ID 'skills-heading' not found.");
-      }
-    });
-     
+document.addEventListener("DOMContentLoaded", function () {
+  const skillTexts = document.querySelectorAll(".skill-text");
+  const skillPercentages = document.querySelectorAll(".skill-percentage");
+  const skillImages = document.querySelectorAll(".skill-img");
+  const skillsSection = document.getElementById("skills-heading");
+
+  if (skillsSection) {
+    let observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            let delay = 0;
+
+            skillImages.forEach((image, index) => {
+              const textElement = skillTexts[index];
+              const percentageElement = skillPercentages[index];
+
+              // Reveal image first
+              setTimeout(() => {
+                if (image) {
+                  image.style.width = "40px"; // Ensure the image is set to the correct width
+                  image.style.animation = `revealImage 0.5s forwards`;
+                }
+              }, delay);
+
+              // Reveal skill text after image
+              setTimeout(() => {
+                if (textElement) {
+                  textElement.style.animation = `typing 0.5s steps(${textElement.textContent.length}, end) forwards`;
+                  textElement.style.opacity = 1;
+                  textElement.classList.add("typing-complete"); // Add class to remove border after animation
+                }
+              }, delay + 500);
+
+              // Reveal skill percentage after text
+              setTimeout(() => {
+                if (percentageElement) {
+                  percentageElement.style.animation = `typing 0.5s steps(${percentageElement.textContent.length}, end) forwards`;
+                  percentageElement.style.opacity = 1;
+                  percentageElement.classList.add("typing-complete"); // Add class to remove border after animation
+                }
+              }, delay + 1000);
+
+              delay += 1500; // Adjust delay for each column
+            });
+
+            // Disconnect observer after the animation has started
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(skillsSection);
+  } else {
+    console.error("Element with ID 'skills-heading' not found.");
+  }
+});
+
 /* =============================================================================
     -------------------------------  Accordion/Collapse  -------------------------------
     ============================================================================= */
-    $(document).ready(function() {
-      $('.toggle-details').on('click', function(e) {
-        e.preventDefault();
-        var $detailsContent = $(this).closest('.item').find('.details-content');
-        $detailsContent.slideToggle(); // Toggle visibility with a slide effect
-        $(this).text($(this).text() === ' -> ' ? ' ↑ ' : ' -> '); // Toggle arrow direction
-      });
+$(document).ready(function () {
+  $(".toggle-details").on("click", function (e) {
+    e.preventDefault();
+    var $detailsContent = $(this).closest(".item").find(".details-content");
+    $detailsContent.slideToggle(); // Toggle visibility with a slide effect
+    $(this).text($(this).text() === " -> " ? " ↑ " : " -> "); // Toggle arrow direction
+  });
+});
+
+/* =============================================================================
+    -------------------------------  EmailJS  -------------------------------
+    ============================================================================= */
+emailjs.init("kg5tsuNlI7xf6kofY");
+
+  document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Collect form data
+    const formData = new FormData(event.target);
+    const data = {};
+    formData.forEach((value, key) => {
+      data[key] = value;
     });
-    
+
+    // Send general confirmation email to the user
+    emailjs.send('service_kfoofik', 'template_ltjf6qa')
+    .then(response => {
+      console.log('User confirmation email sent successfully:', response);
+    })
+    .catch(error => {
+      console.error('Failed to send user confirmation email:', error);
+    });
+
+    // Send email with all form details to the admin
+    emailjs.send('service_kfoofik', 'template_hgci9xq', {
+      from_name: data.name,
+      from_email: data.email,
+      subject: data.subject,
+      message: data.message
+    })
+    .then(response => {
+      console.log('Admin email sent successfully:', response);
+      alert('Your message has been sent successfully!');
+    })
+    .catch(error => {
+      console.error('Failed to send admin email:', error);
+      alert('Oops! Something went wrong. Please try again.');
+    });
+  });
+
