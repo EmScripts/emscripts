@@ -2580,6 +2580,7 @@ body.loaded {
 
 .testim-crv .testim-swiper .item .img {
   width: 80px;
+  height: 80px;
   margin-top: -40px;
   margin-left: -40px;
 }
