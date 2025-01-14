@@ -56,8 +56,8 @@ a {
 }
 
 a:hover {
-  background-color: var(--primary-color);
-  color: var(--invert-font-color);
+  background-color: var(--primary-color)!important;
+  color: var(--invert-font-color) !important;
 }
 
 em {

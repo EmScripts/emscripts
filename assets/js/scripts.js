@@ -736,39 +736,98 @@ $(document).ready(function () {
     ============================================================================= */
 emailjs.init("kg5tsuNlI7xf6kofY");
 
-  document.getElementById('contact-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the default form submission
+document.getElementById('contact-form').addEventListener('submit', function (event) {
+  event.preventDefault(); // Prevent form submission
 
-    // Collect form data
-    const formData = new FormData(event.target);
-    const data = {};
-    formData.forEach((value, key) => {
-      data[key] = value;
-    });
+  // Clear previous validation messages
+  clearValidationMessages();
 
-    // Send general confirmation email to the user
-    emailjs.send('service_kfoofik', 'template_ltjf6qa')
-    .then(response => {
-      console.log('User confirmation email sent successfully:', response);
-    })
-    .catch(error => {
-      console.error('Failed to send user confirmation email:', error);
-    });
+  // Validate each field
+  const form = event.target;
+  const fields = ['form_name', 'form_email', 'form_subject', 'form_message'];
+  let isValid = true;
 
-    // Send email with all form details to the admin
-    emailjs.send('service_kfoofik', 'template_hgci9xq', {
+  fields.forEach((fieldId) => {
+    const field = document.getElementById(fieldId);
+    const validationMessage = field.nextElementSibling; // .invalid-feedback
+
+    console.log('Validating field:', fieldId);  // Debugging
+
+    // Ensure validationMessage exists
+    if (validationMessage) {
+      // Manually check validity
+      if (!field.value.trim()) {
+        console.log('Invalid field:', fieldId);  // Debugging
+        validationMessage.innerText = `Please provide a ${field.placeholder.toLowerCase()}.`; // Custom message
+        validationMessage.style.display = 'block'; // Show feedback message
+        field.classList.add('is-invalid'); // Add Bootstrap's invalid class
+        isValid = false;
+      } else {
+        console.log('Valid field:', fieldId);  // Debugging
+        validationMessage.style.display = 'none'; // Hide feedback message
+        field.classList.remove('is-invalid'); // Remove Bootstrap's invalid class
+      }
+    }
+  });
+
+  // Stop form submission if any field is invalid
+  if (!isValid) return;
+
+  // Proceed with email submission if valid
+  const formData = new FormData(form);
+  const data = {};
+  formData.forEach((value, key) => (data[key] = value.trim()));
+
+  // Send admin email via EmailJS
+  emailjs
+    .send('service_kfoofik', 'template_hgci9xq', {
       from_name: data.name,
       from_email: data.email,
       subject: data.subject,
-      message: data.message
+      message: data.message,
     })
-    .then(response => {
+    .then((response) => {
       console.log('Admin email sent successfully:', response);
-      alert('Your message has been sent successfully!');
+
+      // Send confirmation email to the user
+      return emailjs.send('service_kfoofik', 'template_ltjf6qa', {
+        to_email: data.email,
+      });
     })
-    .catch(error => {
-      console.error('Failed to send admin email:', error);
-      alert('Oops! Something went wrong. Please try again.');
+    .then(() => {
+      console.log('User confirmation email sent successfully.');
+      showAlert('Your message has been sent successfully!', 'success');
+      form.reset(); // Reset form
+    })
+    .catch((error) => {
+      console.error('Failed to send email:', error);
+      showAlert('Oops! Something went wrong. Please try again.', 'danger');
     });
-  });
+});
+
+// Helper function to clear validation messages
+function clearValidationMessages() {
+  const messages = document.querySelectorAll('.invalid-feedback');
+  messages.forEach((message) => (message.style.display = 'none'));
+  const fields = document.querySelectorAll('.is-invalid');
+  fields.forEach((field) => field.classList.remove('is-invalid'));
+}
+
+// Helper function to show alerts
+function showAlert(message, type) {
+  const alertPlaceholder = document.getElementById('alert-placeholder');
+  alertPlaceholder.innerHTML = `
+    <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+      ${message}
+      <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">&times;</button>
+    </div>
+  `;
+}
+
+
+
+
+
+
+
 
