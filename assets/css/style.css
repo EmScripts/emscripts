@@ -4787,3 +4787,9 @@ img.left {
   background: none;
   transition: none;
 }
+
+.bg-contain {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
