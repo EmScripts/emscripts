@@ -46,10 +46,3 @@
   </a>
 </div>
 
-###
-
-<br clear="both">
-
-<img src="https://raw.githubusercontent.com/EmScripts/EmScripts/output/snake.svg" alt="Snake animation" />
-
-###
